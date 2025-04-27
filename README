@@ -1,0 +1,70 @@
+Battleship Game
+Description
+Le projet Battleship Game est un jeu en ligne de bataille navale où deux joueurs (humains ou un humain contre l'IA) s'affrontent pour deviner l'emplacement des navires adverses. Le but du jeu est de couler tous les navires de l'adversaire avant qu'il ne le fasse.
+
+Le jeu utilise une architecture client-serveur pour permettre à deux joueurs humains de s'affronter en ligne. Un agent d'intelligence artificielle (IA) est également prévu pour jouer contre un joueur humain, mais la partie IA n'est pas encore complètement implémentée.
+
+Fonctionnalités
+Mode Humain vs Humain : Deux joueurs s'affrontent en ligne, chacun essayant de deviner l'emplacement des navires de l'autre.
+
+Communication réseau : Le jeu utilise Sockets avec Asyncio pour gérer la communication en temps réel entre le serveur et les clients.
+
+Intelligence Artificielle (IA) : Un agent AI, basé sur Stable-Baselines3 et Gymnasium, est prévu pour jouer contre un joueur humain, bien que cette fonctionnalité ne soit pas complètement terminée.
+
+Interface graphique : Le jeu utilise Pygame pour l'interface graphique du jeu, permettant de visualiser le plateau et les actions des joueurs.
+
+Installation
+Prérequis
+Python 3.x
+
+Pygame : pip install pygame
+
+Stable-Baselines3 (si vous souhaitez travailler sur l'IA) : pip install stable-baselines3
+
+Gymnasium : pip install gymnasium
+
+Asyncio (inclus par défaut dans Python 3.x)
+
+Pour voir le projet en action, vous devez cloner le dépôt et exécuter le serveur et les clients.
+
+
+Pour démarrer le serveur, exécutez la commande suivante dans un terminal :
+python server.py
+Lancer les clients : Ouvrez deux terminaux différents et lancez un client sur chaque terminal :
+
+Pour démarrer le client, exécutez la commande suivante dans chaque terminal :
+python main.py
+Chaque client se connecte au serveur et permet à deux joueurs de s'affronter.
+
+Utilisation
+Placer les navires : Chaque joueur place ses navires sur une grille. Les navires sont invisibles pour l'autre joueur.
+
+Tirer sur l'adversaire : Les joueurs prennent alternativement des tirs pour deviner l'emplacement des navires de l'adversaire.
+
+Gagner : Le premier joueur à couler tous les navires de l'adversaire gagne la partie.
+
+IA (Non Terminée)
+L'agent IA utilise un modèle de Deep Reinforcement Learning (DRL). Cependant, cette fonctionnalité n'est pas encore pleinement fonctionnelle, car les récompenses et la procédure d'apprentissage n'ont pas encore été ajustées correctement. Le modèle utilise Stable-Baselines3 pour l'entraînement et Gymnasium pour l'environnement de jeu.
+
+Entraînement de l'IA
+L'IA devait être formée pour jouer de manière optimale contre un joueur humain. Cependant, les mécanismes de récompense et d'apprentissage n'ont pas encore été mis en place de manière satisfaisante. Cette fonctionnalité nécessite des améliorations pour atteindre une performance fiable.
+
+Architecture du Projet
+Le projet est structuré de la manière suivante :
+
+Battleship-Game/
+│
+├── server.py              # Fichier serveur pour gérer la communication entre les clients
+├── main.py                # Fichier client pour démarrer et jouer le jeu
+├── game_logic.py          # Logique du jeu, gestion des navires, grille, tours, etc.
+├── battleship_env.py      # Environnement de jeu pour l'IA (Gymnasium)
+├── agent.py               # Implémentation de l'agent IA avec Stable-Baselines3
+├── agentai_main.py        # Code principal pour l'agent IA (partiellement terminé)
+└── README.md              # Documentation du projet
+
+Serveur
+Le serveur central gère la communication entre les deux clients. Il attend les connexions des joueurs, leur attribue un rôle (joueur 1 ou joueur 2), et gère les échanges de données en temps réel pendant la partie.
+
+Client
+Chaque client est un joueur humain qui interagit avec le jeu via une interface graphique (Pygame). Le client envoie ses actions au serveur, qui les transmet à l'autre joueur.
+
